@@ -4,7 +4,7 @@ include_once '../../setting/session.php';
 
 
 $cek = $conn->query("SELECT * FROM order_detail");
-$cek1 = $conn->query("SELECT * FROM transaksi WHERE id_order");
+$cek1 = $conn->query("SELECT * FROM transaksi");
 $hasil =$cek1->fetch_array();
  ?>
  <!DOCTYPE html>
@@ -30,14 +30,14 @@ $hasil =$cek1->fetch_array();
 		
 		</tr>
 		<tbody>
-			<?php while ( $data = $cek->fetch_array()) {
-				$no = 0;
+			
+<?php while ( $data = $cek->fetch_array()) {
+			
 				$no++;
 			?>
-
 				<tr>
 				<td><?php echo $no; ?></td>
-				<td><a href="order.php" title=""><?php echo $data['id_order']; ?></a></td>
+				<td><a href="order.php?id=<?php echo $data['id_order']; ?>"><?php echo $data['id_order']; ?></a></td>
 
 				
 				<td><?php echo $data['username']; ?></td>
@@ -54,13 +54,16 @@ $hasil =$cek1->fetch_array();
 				
 
 				</tr>
-			
+			<?php 
+		
+	}?>
 
 		</tbody>
-		</table>
-		<?php }
 		
-		?>
+		</table>
+		
+		
+		
 	</form>
 
 

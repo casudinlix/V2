@@ -2,8 +2,8 @@
 include_once '../../setting/server.php';
 include_once '../../setting/session.php';
 
-
-$cek = $conn->query("SELECT * FROM transaksi");
+$id = $_GET['id'];
+$cek = $conn->query("SELECT * FROM transaksi WHERE id_order='$id'");
 
  ?>
  <!DOCTYPE html>
@@ -50,21 +50,19 @@ $cek = $conn->query("SELECT * FROM transaksi");
 				<td><?php echo $data['biaya']; ?></td>
 
 				<td>
-					<select name="status">
-						<option value=""><?php echo $data['status']; ?></option>
-						
-					</select>
-					
-				
+
+						<?php echo $data['status']; ?>
+
+
 				</td>
-				
+
 
 				</tr>
-			
 
+<?php }?>
 		</tbody>
 		</table>
-		<?php }?>
+		<td colspan="" rowspan="" headers=""><input type="submit" name="submit" value="Approve"></td>
 	</form>
 
 
