@@ -2,7 +2,7 @@
 include "../../setting/server.php";
 include "../../setting/session.php";
 
-$idt = $_SESSION['nama'];
+
 $id = $_POST['id'];
 $qty = $_POST['qty'];
 
@@ -21,14 +21,15 @@ $row = $cek->fetch_assoc();
 $idOrd = $row['idOrd'];
 
 foreach($qty as $key => $value){
-	$sql = "INSERT INTO transaksi(id,id_order,id_produk,qty,username,tanggal,type_order,status)
-	values (null,'{$idOrd}','{$id[$key]}','{$value}','{$idt}','{$time}','Online','Belum Di Bayar')";
+	$sql = "INSERT INTO transaksi(id,id_order,id_produk,qty,username,tanggal,type_order)
+	values (null,'{$idOrd}','{$id[$key]}','{$value}','{$idt}','{$time}','Online')";
 	
 	$conn->query($sql);
-}
-if (!$sql) {
+	if (!$sql) {
 	die($conn->error);
 }
+}
+
 
 
 if ($hasil) {

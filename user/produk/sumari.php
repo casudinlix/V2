@@ -3,7 +3,7 @@ include "../../setting/server.php";
 include "../../setting/session.php";
 
 
-$idt = $_SESSION['nama'];
+$nama = $_SESSION['nama'];
 
 $query = $conn->query("SELECT username FROM order_user WHERE username = '$idt'");
 
@@ -15,7 +15,7 @@ if ($numRow = $query->num_rows == 0) {
 $id = $_GET['id'];
 
 
-$query =$conn->query("SELECT * FROM login WHERE nama='$idt'");
+$query =$conn->query("SELECT * FROM login WHERE nama='$nama'");
 $data = $query->fetch_array();
 
 $queryOrd = $conn->query("SELECT * FROM order_detail WHERE username='$idt' ");
@@ -76,9 +76,10 @@ $dataOrd =$queryOrd->fetch_array();
 			<th width="95px">Total Berat</th>
 			<th width="190px">Sub Total</th>
 		</tr>
-		<?php 
-			$no = 1;
+		
 
+<?php
+			$no = 1;
 			$total = 0;
 			$berat =0;
 			$queryTrs = $conn->query("SELECT * FROM transaksi WHERE id_order='$dataOrd[id_order]'");
@@ -87,8 +88,9 @@ $dataOrd =$queryOrd->fetch_array();
 				$queryPro = $conn->query("SELECT * FROM m_produk WHERE id_produk='$dataTrs[id_produk]'");
 				$dataPro = $queryPro->fetch_array();
 				$subtotal = $dataPro['harga'] * $dataTrs['qty'];
-				$berat =$dataTrs['qty'] * $dataPro['berat'];
-				$total = $total + $subtotal * $berat;
+				$biaya =$dataTrs['biaya'] + $dataTrs['qty'] ;
+				
+				$total = $total + $subtotal;
 				
 		?>
 		<tr style="height:50px;">
@@ -96,8 +98,8 @@ $dataOrd =$queryOrd->fetch_array();
 			<td><?php echo $dataPro['nama_produk']; ?></td>
 			<td align="center">Rp. <?php echo $dataPro['harga']; ?></td>
 			<td align="center"><?php echo $dataTrs['qty']; ?></td>
-			<td align="center"><?php echo $berat; ?>-KG</td>
-			<td align="center">Rp. <?php echo $subtotal*$berat; ?></td>
+			<td align="center"><?php echo $dataTrs['biaya'] ?>/Kg</td>
+			<td align="center">Rp. <?php echo $subtotal+$biaya; ?></td>
 		</tr>
 		<?php
 			$no++;
@@ -105,8 +107,9 @@ $dataOrd =$queryOrd->fetch_array();
 		?>
 		<tr style="height:50px;">
 			<td colspan="5" align="right"><b style="margin-right: 3px;">Total Biaya</b></td>
-			<td align="center" rowspan="3" ><b>Rp. <?php echo $total; ?></b></td>
+			<td align="center" rowspan="3" ><b>Rp. <?php echo $total+$biaya; ?></b></td>
 		</tr>
 	</table>
 <td><a href="status_pesan.php?&amp;id=<?php echo $id; ?>">Benar</a></td>
 </div>
+

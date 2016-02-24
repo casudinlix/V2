@@ -38,12 +38,7 @@ $selectAdd = $conn->query("SELECT id_produk FROM order_user WHERE id_produk='$id
 ?>*/
 include "../../setting/server.php";
 include "../../setting/session.php";
-if(!isset($_SESSION['transaksi'])){
-    
-    $_SESSION['transaksi'] = $idt;
-}
-$idt = $_SESSION['transaksi'];
-// $id = $_GET['id'];
+
 if(isset($_GET['id'])) {
 	$id = $_GET['id'];
 } else {
@@ -59,7 +54,7 @@ if (isset($_GET['qty'])) {
 }else{
 	$qty="";
 }
-$idt = $_SESSION['nama'];
+
 $encript = md5($id);
 $regex = preg_replace("/[^A-Za-z]/", '', $encript);
 $alfa = substr($regex, 0, 5);
@@ -97,7 +92,7 @@ if (!$insert) {
 
 	}
 	if ($insert) {
-echo "<script>window.location = 'pesan.php';</script>";	}
+	echo "<script>window.location = 'pesan.php';</script>";	}
 }else if ($act =='plus') {
 	$update = $conn->query("UPDATE order_user SET qty=$qty+1 WHERE id_produk='$id' AND username='$idt'"  );
 	if ($update) {

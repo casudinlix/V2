@@ -45,10 +45,11 @@ if (isset($_POST['login'])=='LOGIN') {
 		$_SESSION['id']=$row['id'];
 		$_SESSION['nama']=$row['nama'];
 		$_SESSION['username']=$row['username'];
-		$_SESSION['id_pelanggan']=['id_pelanggan'];
+		$_SESSION['email']=$row['email'];
+		
 		$_SESSION['confirm']=$row['confirm'];
 		$_SESSION['role']=$row['role'];
-		$_SESSION['transaksi']=$row['transaksi'];
+		
 		$_SESSION['foto']=$row['foto'];
 		header('location:cek.php');
 	}

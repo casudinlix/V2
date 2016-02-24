@@ -15,7 +15,7 @@ if ($query->num_rows == 0) {
 
  //$detail = "SELECT * FROM order_user WHERE username='$idt'";
 //$query = $conn->query($detail);
-$idt = $_SESSION['nama'];
+
 $query = $conn->query("SELECT * FROM order_user, m_produk WHERE username='$idt'AND order_user.id_produk=m_produk.id_produk ");
 //$query = $conn->query("SELECT * FORM order_user ot INNER JOIN m_produk p ON ot.id_produk=p.id_produk WHERE username='$idt'");
 $numRow = $query->num_rows;
@@ -55,10 +55,10 @@ if ($numRow == 0) {
 			<tbody>
 			<?php
 $no = 0;
-<<<<<<< HEAD
+
 	$total =0;
-=======
->>>>>>> d53e5d96353904116fafd489fcce24ba29cd4957
+
+
 				while ($row=$query->fetch_array()) {
 					
 					$no++;

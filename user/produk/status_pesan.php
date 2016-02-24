@@ -1,10 +1,10 @@
-<<<<<<< HEAD
-<?php  
+
+<?php
 include "../../setting/server.php";
 include "../../setting/session.php";
 
 
-$idt = $_SESSION['nama'];
+$nama = $_SESSION['nama'];
 
 $query = $conn->query("SELECT username FROM order_user WHERE username = '$idt'");
 
@@ -16,7 +16,7 @@ if ($numRow = $query->num_rows == 0) {
 $id = $_GET['id'];
 
 
-$query =$conn->query("SELECT * FROM login WHERE nama='$idt'");
+$query =$conn->query("SELECT * FROM login WHERE nama='$nama'");
 $data = $query->fetch_array();
 
 $queryOrd = $conn->query("SELECT * FROM order_detail WHERE username='$idt' ");
@@ -101,7 +101,7 @@ $dataOrd =$queryOrd->fetch_array();
 			<td align="center"><?php echo $dataTrs['qty']; ?></td>
 			<td align="center"><?php echo $dataPro['berat']; ?>-KG</td>
 			<td align="center">Rp. <?php echo $subtotal +$biaya; ?></td>
-			<td align="center" rowspan="2"><?php echo $dataTrs['status']; ?></td>
+			<td align="center" rowspan=""><?php echo $dataTrs['status']; ?></td>
 		</tr>
 		<?php
 			$no++;
@@ -114,77 +114,3 @@ $dataOrd =$queryOrd->fetch_array();
 	</table>
 
 </div>
-=======
-<?php 
-include "../../setting/server.php";
-include "../../setting/session.php";
-$id=$_GET['id'];
-
-$idt = $_SESSION['nama'];
-//$query = $conn->query("SELECT * FROM transaksi, m_produk WHERE username='$idt'AND transaksi.id_produk=m_produk.id_produk ");
-//$cek = $query->fetch_array();
-$query = $conn->query("SELECT * FROM transaksi WHERE username='$idt' AND id_order='$id' ");
-
-
- ?>
- <form method="post" action="save_pesan.php">
-	<div class="row-isi">
-		<table width="95%" align="center">
-			<tr>
-				<td><h2>Rincian Pembelian :</h2></td>
-			</tr>
-			<tr>
-				<td>
-					<a href="../user.php"><input type="button" value="Beli Lagi" ></a>
-				</td>
-			</tr>
-		</table>
-
-		<table border="1"  width="" align="center">
-			<tr bgcolor="#75D1FF">
-				<th width="">No</th>
-				
-				
-				<th width="">ID Order</th>
-				<th width="">Id Produk</th>
-				
-				<th width="">QTY</th>
-				
-				<th width="">Status</th>
-
-			</tr>
-			<tbody>
-			<?php
-$no = 0;
-				while ($row=$query->fetch_array()) {
-					
-					$no++;
-	
-		
-					?>
-					
-					<tr><td colspan="" rowspan="" headers=""><?php echo $no; ?></td>
-					
-					<td colspan="" rowspan="" headers=""><?php echo $row['id_order']; ?></td>
-					<td colspan="" rowspan="" headers=""><?php echo $row['id_produk']; ?></td>
-					<td><?php echo $row['qty'];?></td>
-
-						<td><?php echo $row['status'];?></td>
-						</td>
-
-
-					</tr>
-
-			
-							
-<?php } 
-
-?>
-		
-
-
-
-
-</tbody>
-			</table>
->>>>>>> d53e5d96353904116fafd489fcce24ba29cd4957

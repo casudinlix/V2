@@ -3,8 +3,9 @@ include_once '../../setting/server.php';
 include_once '../../setting/session.php';
 
 
-$cek = $conn->query("SELECT * FROM transaksi");
-
+$cek = $conn->query("SELECT * FROM order_detail");
+$cek1 = $conn->query("SELECT * FROM transaksi WHERE id_order");
+$hasil =$cek1->fetch_array();
  ?>
  <!DOCTYPE html>
  <html>
@@ -20,40 +21,33 @@ $cek = $conn->query("SELECT * FROM transaksi");
 	<table border="1">
 		
 		<tr>
+		<th colspan="" rowspan="" headers="" scope="">No</th>
 		<th colspan="" rowspan="" headers="" scope="">Id Order</th>
-		<th colspan="" rowspan="" headers="" scope="">Id Produk</th>
-		<th colspan="" rowspan="" headers="" scope="">Qty</th>
+		
 		<th colspan="" rowspan="" headers="" scope="">Pemesan</th>
 		<th colspan="" rowspan="" headers="" scope="">Tanggal</th>
-		<th colspan="" rowspan="" headers="" scope="">Type Order</th>
-		<th colspan="" rowspan="" headers="" scope="">Bukti Pembayaran</th>
-		<th colspan="" rowspan="" headers="" scope="">Biaya Kirim</th>
-		<th colspan="" rowspan="" headers="" scope="">Statsus</th>
+		
+		
 		</tr>
 		<tbody>
 			<?php while ( $data = $cek->fetch_array()) {
-				# code...
+				$no = 0;
+				$no++;
 			?>
 
 				<tr>
-				<td><?php echo $data['id_order']; ?></td>
+				<td><?php echo $no; ?></td>
+				<td><a href="order.php" title=""><?php echo $data['id_order']; ?></a></td>
 
-				<td><?php echo $data['id_produk']; ?></td>
-				<td><?php echo $data['qty']; ?></td>
+				
 				<td><?php echo $data['username']; ?></td>
 				
 				<td><?php echo $data['tanggal']; ?></td>
 
-				<td><?php echo $data['type_order']; ?></td>
-				<td><a href="../../user/bukti/<?php echo $data['bukti_transfer'];?>" title="" target='_blank'><?php echo $data['bukti_transfer'];?></td></a>
+				
+				
 
-				<td><?php echo $data['biaya']; ?></td>
-
-				<td>
-					<select name="status">
-						<option value=""><?php echo $data['status']; ?></option>
-						
-					</select>
+				
 					
 				
 				</td>
@@ -64,7 +58,9 @@ $cek = $conn->query("SELECT * FROM transaksi");
 
 		</tbody>
 		</table>
-		<?php }?>
+		<?php }
+		
+		?>
 	</form>
 
 

@@ -3,9 +3,9 @@ include "../../setting/server.php";
 include "../../setting/session.php";
 
 
-$idt = $_SESSION['nama'];
+$nama = $_SESSION['nama'];
 
-$sql = $conn->query("SELECT * FROM login WHERE nama='$idt' ");
+$sql = $conn->query("SELECT * FROM login WHERE nama='$nama' ");
 $data =$sql->fetch_assoc();
 
 $query = $conn->query("SELECT username FROM order_user WHERE username='$idt'");
@@ -13,7 +13,7 @@ if ($numRow=$query->num_rows == 0) {
 	echo "<script>window.alert('Anda Belum Melakukan Transaksi);</script>";
 	echo "<script>window.location = '../user.php';</script>";
 }
-$query = $conn->query("SELECT * FROM login WHERE nama='$idt'");
+$query = $conn->query("SELECT * FROM login WHERE nama='$nama'");
 $datacus = $query->fetch_array();
 
  ?>
@@ -34,7 +34,7 @@ $datacus = $query->fetch_array();
 	<input type="hidden" name="id_cus" value="<?php echo $datacus['nama']; ?>">
 	<input type="hidden" name="kode" value="<?php echo $_GET['id_order']; ?>" placeholder="">
 		<tr>
-			<td colspan="" rowspan="" headers="">Nama:<input type="teks" name="nama" value="<?php echo $idt; ?>" readonly></td>
+			<td colspan="" rowspan="" headers="">Nama:<input type="teks" name="nama" value="<?php echo $nama; ?>" readonly></td>
 		</tr>
 		<tr>
 			<td colspan="" rowspan="" headers="">Alamat:<textarea name="alamat"  readonly=""><?php echo $data['alamat']; ?></textarea></td>
