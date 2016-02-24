@@ -29,7 +29,7 @@ include 'fungsi.php';
 
 	<option value="">---</option>
 	<?php
-		$ambil = $conn->query("SELECT * FROM jenis ORDER BY nama_jenis ASC LIMIT 2");
+		$ambil = $conn->query("SELECT * FROM m_jenis ORDER BY nama_jenis ASC LIMIT 2");
 		if($ambil->num_rows > 0){
 			while ( $data =$ambil->fetch_array()) {
 				?>
@@ -60,7 +60,7 @@ include 'fungsi.php';
 <td><select name="merk">
 	<option value="">---</option>
 	<?php
-		$ambil = $conn->query("SELECT * FROM merk ORDER BY nama_merk ASC");
+		$ambil = $conn->query("SELECT * FROM m_merk ORDER BY nama_merk ASC");
 		if($ambil->num_rows > 0){
 			while ( $data =$ambil->fetch_array()) {?>
 

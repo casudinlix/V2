@@ -8,12 +8,11 @@ $u=$conn->query("SELECT * FROM m_produk WHERE id_produk='$id'");
 $us=$u->fetch_array();
 if(file_exists("../../produk/".$us['gambar'])){
 	unlink("../../produk/".$us['gambar']);
-}else{
-$query = "DELETE FROM m_produk WHERE id_produk='$id'";
+	$query = "DELETE FROM m_produk WHERE id_produk='$id'";
 $conn->query($query);
-
 $sql=$conn->query("DELETE FROM stock WHERE id_produk='$id'");
-echo "<script>window.alert('Data Berhasil Di Hapus');</script>";
+	echo "<script>window.alert('Data Berhasil Di Hapus');</script>";
 	echo "<script>window.location ='produk.php';</script>";
 }
+
  ?>
