@@ -41,7 +41,7 @@ $query = $conn->query($sql);
     <th colspan="" rowspan="" headers="" scope="">Berat Barang</th>
     <th colspan="" rowspan="" headers="" scope="">Stock</th>
     <th colspan="" rowspan="" headers="" scope="">Harga</th>
-    <th colspan="" rowspan="" headers="" scope="">Tanggal Masuk</th>
+ 
     <th colspan="" rowspan="" headers="" scope="">Gambar</th>
     
     
@@ -67,7 +67,7 @@ if ($query->num_rows) {
 <td colspan="" rowspan="" headers=""><?php echo $data['berat']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['stock']; ?></td>
 <td colspan="" rowspan="" headers="">Rp-,<?php echo $data['harga']; ?></td>
-<td colspan="" rowspan="" headers=""><?php echo $data['tgl_masuk']; ?></td>
+
 <td colspan="" rowspan="" headers=""><img src="../produk/<?php echo $data['gambar'];?>" alt="Produck" height=102></td>
 <td colspan="" rowspan="" headers=""><a href="produk/detail.php?id=<?php echo $data['id_produk'];?>"</a>Detail<br/>
 

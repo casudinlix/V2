@@ -9,7 +9,9 @@ if (isset($_SESSION['role']))
  if ($_SESSION['role'] == "1")
    {   
    echo "Selamat Datang&nbsp".$_SESSION['nama']."</br>";
-   
+   echo "<a href='../administrator.php'> Back </a>";
+   include_once 'atas_admin.php';
+
    }
    // jika kondisi level user maka akan diarahkan ke halaman lain
    else if ($_SESSION['role'] == "2")

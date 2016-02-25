@@ -1,16 +1,11 @@
-<?php
+<?php  
 include "../../setting/server.php";
 include "../../setting/session.php";
 
 
 $nama = $_SESSION['nama'];
 
-$query = $conn->query("SELECT username FROM order_user WHERE username = '$idt'");
 
-if ($numRow = $query->num_rows == 0) {
-	echo "<script>window.alert('Keranjang Belanja Anda Masih Kosong');</script>";
-	echo "<script>window.location = '../user.php';</script>";
-}
 
 $id = $_GET['id'];
 
@@ -62,7 +57,7 @@ $dataOrd =$queryOrd->fetch_array();
 					<tr>
 						<td><b>Nomor Order:</b></td>
 						<td>:</td>
-						<td><?php echo $id = $_GET['id']; ?></td>
+						<td><?php echo $id; ?></td>
 					</tr>
 					
 				</table>
@@ -73,13 +68,14 @@ $dataOrd =$queryOrd->fetch_array();
 			<th width="305px">Barang</th>
 			<th width="190px">Harga Satuan</th>
 			<th width="95px">Jumlah</th>
-			<th width="95px">Total Berat</th>
+			<th width="95px">Berat</th>
 			<th width="190px">Sub Total</th>
 			<th width="190px">Status</th>
 		</tr>
-		<?php 
-			$no = 1;
+		
 
+<?php
+			$no = 1;
 			$total = 0;
 			$berat =0;
 			$queryTrs = $conn->query("SELECT * FROM transaksi WHERE id_order='$dataOrd[id_order]'");
@@ -98,8 +94,8 @@ $dataOrd =$queryOrd->fetch_array();
 			<td><?php echo $dataPro['nama_produk']; ?></td>
 			<td align="center">Rp. <?php echo $dataPro['harga']; ?></td>
 			<td align="center"><?php echo $dataTrs['qty']; ?></td>
-			<td align="center"><?php echo $dataPro['berat']; ?>-KG</td>
-			<td align="center">Rp. <?php echo $subtotal +$biaya; ?></td>
+			<td align="center"><?php echo $dataTrs['biaya'] ?>/Kg</td>
+			<td align="center">Rp. <?php echo $subtotal+$biaya; ?></td>
 			<td align="center" rowspan=""><?php echo $dataTrs['status']; ?></td>
 		</tr>
 		<?php
@@ -113,3 +109,4 @@ $dataOrd =$queryOrd->fetch_array();
 	</table>
 
 </div>
+

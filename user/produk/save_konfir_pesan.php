@@ -23,6 +23,7 @@ $unic = $acak.$foto;
 	//$sql1 = $conn->query("UPDATE transaksi SET bukti_transfer='$unic', status='Menunggu Konfirmasi',biaya='$biaya' WHERE id_order='$kode'");
 if ($sql) {
 	move_uploaded_file($_FILES['bukti']['tmp_name'],"../bukti/".$acak.$_FILES['bukti']['name']);
+	$deleteOt = $conn->query("DELETE FROM order_user WHERE username='$idt'");
 	echo "<script>window.location = 'sumari.php?id=$kode';</script>";
 
 }else{

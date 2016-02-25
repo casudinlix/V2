@@ -19,18 +19,14 @@ $hasil = $conn->query($query);
 $cek = $conn->query("SELECT max(id_order) AS idOrd FROM order_detail LIMIT 1");
 $row = $cek->fetch_assoc();
 $idOrd = $row['idOrd'];
-
 foreach($qty as $key => $value){
 	$sql = "INSERT INTO transaksi(id,id_order,id_produk,qty,username,tanggal,type_order)
 	values (null,'{$idOrd}','{$id[$key]}','{$value}','{$idt}','{$time}','Online')";
-	
 	$conn->query($sql);
 	if (!$sql) {
 	die($conn->error);
 }
 }
-
-
 
 if ($hasil) {
 	header("Location:konfir_pesan.php?id_order=$idOrd");

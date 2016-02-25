@@ -5,12 +5,7 @@ include "../../setting/session.php";
 
 $nama = $_SESSION['nama'];
 
-$query = $conn->query("SELECT username FROM order_user WHERE username = '$idt'");
 
-if ($numRow = $query->num_rows == 0) {
-	echo "<script>window.alert('Keranjang Belanja Anda Masih Kosong');</script>";
-	echo "<script>window.location = '../user.php';</script>";
-}
 
 $id = $_GET['id'];
 
@@ -110,6 +105,6 @@ $dataOrd =$queryOrd->fetch_array();
 			<td align="center" rowspan="3" ><b>Rp. <?php echo $total+$biaya; ?></b></td>
 		</tr>
 	</table>
-<td><a href="status_pesan.php?&amp;id=<?php echo $id; ?>">Benar</a></td>
+<td><a href="transaksi_detail.php?id=<?php echo $id; ?>">Benar</a></td>
 </div>
 

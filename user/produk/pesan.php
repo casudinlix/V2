@@ -20,7 +20,7 @@ $query = $conn->query("SELECT * FROM order_user, m_produk WHERE username='$idt'A
 //$query = $conn->query("SELECT * FORM order_user ot INNER JOIN m_produk p ON ot.id_produk=p.id_produk WHERE username='$idt'");
 $numRow = $query->num_rows;
 if ($numRow == 0) {
-	echo "<script>window.alert('Keranjang Belanja Anda Masih Kosong');</script>";
+	echo "<script>window.alert('Anda Belum Melakukan Transaksi ');</script>";
 	echo "<script>window.location = '../user.php';</script>";
 }
 

@@ -1,12 +1,6 @@
 <?php
 
 
-
-if (isset($_GET['profil'])) {
-	$id = $_GET['id'];
-}
-
-
 	 $query_pelanggan = "SELECT * FROM login WHERE id='".$_SESSION['id']."' LIMIT 1";
 	 $hasil = $conn->query($query_pelanggan);
 	 if ($hasil->num_rows > 0) {
@@ -27,7 +21,7 @@ if (isset($_GET['profil'])) {
 </head>
 <body>
 	||<a href="aksi/produk.php">Master Produk</a>|| 
-	<a href="../../logout.php">Keluar</a>||
+	<a href="../logout.php">Keluar</a>||
 	<a href="cari_produk.php" title=""> Cari Produk</a>||
 	<a href="aksi/cek_order.php" title=""> Cek Order</a>
 </body>

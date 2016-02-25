@@ -36,7 +36,7 @@ $cek = $conn->query("SELECT * FROM transaksi WHERE id_order='$id'");
 			?>
 
 				<tr>
-				<td><?php echo $data['id_order']; ?></td>
+				<td rowspan=""><?php echo $data['id_order']; ?></td>
 
 				<td><?php echo $data['id_produk']; ?></td>
 				<td><?php echo $data['qty']; ?></td>
