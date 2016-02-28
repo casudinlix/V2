@@ -13,7 +13,7 @@ $id = $_GET['id'];
 $query =$conn->query("SELECT * FROM login WHERE nama='$nama'");
 $data = $query->fetch_array();
 
-$queryOrd = $conn->query("SELECT * FROM order_detail WHERE username='$idt' ");
+$queryOrd = $conn->query("SELECT * FROM order_detail WHERE id_order='$id' ");
 $dataOrd =$queryOrd->fetch_array();
 ?>
 <style type="text/css">

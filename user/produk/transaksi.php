@@ -6,12 +6,14 @@ include "../../setting/session.php";
 $queryOrd = $conn->query("SELECT * FROM order_detail WHERE username='$idt' ");
 $data =$queryOrd->fetch_array();
 if ($numRow = $queryOrd->num_rows == 0) {
-		echo "<script>window.alert('Anda Belum melakukan Trnsakasi');</script>";
+		echo "<script>window.alert('Anda Belum melakukan Transakasi');</script>";
 		echo "<script>window.location = '../user.php';</script>";
 
 }
-$queryTrs = $conn->query("SELECT * FROM transaksi WHERE username='$idt'");
+$queryOrd = $conn->query("SELECT * FROM order_detail WHERE username='$idt' ");
+$dataOrd =$queryOrd->fetch_array();
 
+$queryTrs = $conn->query("SELECT id_order FROM transaksi WHERE username='$idt'");
  ?>
  <!DOCTYPE html>
  <html>
