@@ -6,6 +6,7 @@ include_once '../../setting/session.php';
 $cek = $conn->query("SELECT * FROM order_detail");
 $cek1 = $conn->query("SELECT * FROM transaksi");
 $hasil =$cek1->fetch_array();
+$no =0;
  ?>
  <!DOCTYPE html>
  <html>
@@ -26,6 +27,7 @@ $hasil =$cek1->fetch_array();
 		
 		<th colspan="" rowspan="" headers="" scope="">Pemesan</th>
 		<th colspan="" rowspan="" headers="" scope="">Tanggal</th>
+		<th colspan="" rowspan="" headers="" scope="">Aksi</th>
 		
 		
 		</tr>
@@ -44,7 +46,8 @@ $hasil =$cek1->fetch_array();
 				
 				<td><?php echo $data['tanggal']; ?></td>
 
-				
+				<td colspan="" rowspan="1" headers=""><a href="aksi_order.php?act=hapus&amp;id=<?php echo $data['id_order'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"title="">Hapus</td></a>
+
 				
 
 				

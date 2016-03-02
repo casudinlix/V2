@@ -16,7 +16,7 @@ $cek = $conn->query("SELECT * FROM transaksi WHERE id_order='$id'");
  </head>
  <body>
 <center>
-	<form action="" method="POST" accept-charset="utf-8">
+	<form action="aksi_order.php" method="POST" accept-charset="utf-8">
 	<table border="1">
 		
 		<tr>
@@ -28,7 +28,8 @@ $cek = $conn->query("SELECT * FROM transaksi WHERE id_order='$id'");
 		<th colspan="" rowspan="" headers="" scope="">Type Order</th>
 		<th colspan="" rowspan="" headers="" scope="">Bukti Pembayaran</th>
 		<th colspan="" rowspan="" headers="" scope="">Biaya Kirim</th>
-		<th colspan="" rowspan="" headers="" scope="">Statsus</th>
+		<th colspan="" rowspan="" headers="" scope="">Status</th>
+		<th colspan="" rowspan="" headers="" scope="">Aksi</th>
 		</tr>
 		<tbody>
 			<?php while ( $data = $cek->fetch_array()) {
@@ -56,12 +57,12 @@ $cek = $conn->query("SELECT * FROM transaksi WHERE id_order='$id'");
 
 				</td>
 
-
 				</tr>
 
 <?php }?>
 		</tbody>
 		</table>
+		<table></table>
 		<td colspan="" rowspan="" headers=""><input type="submit" name="submit" value="Approve"></td>
 	</form>
 
@@ -69,3 +70,7 @@ $cek = $conn->query("SELECT * FROM transaksi WHERE id_order='$id'");
 </center>
  </body>
  </html>
+
+ <?php 
+
+  ?>
