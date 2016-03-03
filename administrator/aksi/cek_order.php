@@ -3,17 +3,18 @@ include_once '../../setting/server.php';
 include_once '../../setting/session.php';
 
 
-$cek = $conn->query("SELECT * FROM order_detail");
-$cek1 = $conn->query("SELECT * FROM transaksi");
-$hasil =$cek1->fetch_array();
+$queryOrd = $conn->query("SELECT * FROM transaksi WHERE status='Sedang Verifikasi Data' ");
 $no =0;
- ?>
- <!DOCTYPE html>
+if ($queryOrd ) {
+	?>
+
+
+<!DOCTYPE html>
  <html>
  <head>
  	<meta charset="utf-8">
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
- 	<title>Order masuk</title>
+ 	<title></title>
  	<link rel="stylesheet" href="">
  </head>
  <body>
@@ -27,49 +28,51 @@ $no =0;
 		
 		<th colspan="" rowspan="" headers="" scope="">Pemesan</th>
 		<th colspan="" rowspan="" headers="" scope="">Tanggal</th>
+		<th colspan="" rowspan="" headers="" scope="">Status</th>
 		<th colspan="" rowspan="" headers="" scope="">Aksi</th>
 		
 		
 		</tr>
 		<tbody>
 			
-<?php while ( $data = $cek->fetch_array()) {
+<?php while ( $row = $queryOrd->fetch_array()) {
 			
 				$no++;
 			?>
 				<tr>
 				<td><?php echo $no; ?></td>
-				<td><a href="order.php?id=<?php echo $data['id_order']; ?>"><?php echo $data['id_order']; ?></a></td>
+				<td><a href="order.php?id=<?php echo $row['id_order']; ?>"><?php echo $row['id_order']; ?></a></td>
 
 				
-				<td><?php echo $data['username']; ?></td>
+				<td><?php echo $row['username']; ?></td>
 				
-				<td><?php echo $data['tanggal']; ?></td>
+				<td><?php echo $row['tanggal']; ?></td>
+<td colspan="" rowspan="" headers=""><?php echo $row['status']; ?></td>
+				<td colspan="" rowspan="1" headers=""><a href="aksi_order.php?act=hapus&amp;id=<?php echo $row['id_order'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"title="">Hapus</td></a>
 
-				<td colspan="" rowspan="1" headers=""><a href="aksi_order.php?act=hapus&amp;id=<?php echo $data['id_order'] ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"title="">Hapus</td></a>
 
-				
-
-				
-					
-				
 				</td>
-				
 
 				</tr>
-			<?php 
-		
+			<?php
+
 	}?>
 
 		</tbody>
-		
+
 		</table>
-		
-		
-		
-	</form>
 
 
+
+<?php
+}else{
+		echo "<script>window.alert('Tidak Ada Order Masuk Hari Ini');</script>";
+		echo "<script>window.location = '../administrator.php';</script>";
+}
+ ?>
+</form>
 </center>
+
  </body>
+
  </html>
